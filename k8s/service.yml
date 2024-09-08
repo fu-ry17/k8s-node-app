@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-node-app-service
+spec:
+  selector:
+    app: k8s-node-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3001
+      nodePort: 31101
+  type: LoadBalancer

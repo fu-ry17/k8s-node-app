@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-node-app
+  labels:
+    app: k8s-node-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: k8s-node-app
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 3
+  template:
+    metadata:
+      labels:
+        app: k8s-node-app
+    spec:
+      containers:
+        - name: k8s-node-app
+          image: fury17/k8s-node-app:latest
+          ports:
+            - containerPort: 3001
+          envFrom:
+            - configMapRef:
+                name: k8s-node-app-configmap
+            - secretRef:
+                name: k8s-node-app-secret
