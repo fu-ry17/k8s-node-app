@@ -3,7 +3,7 @@ import { tokenCtrl } from "../controller/tokenCtrl";
 
 const router = express.Router();
 
-router.post("/", tokenCtrl.healthCheck);
+router.get("/", tokenCtrl.healthCheck);
 
 router.post("/generate", tokenCtrl.generateToken);
 
